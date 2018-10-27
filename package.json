@@ -1,0 +1,23 @@
+{
+  "name": "system-information",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "claudianus@engineer.com",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^1.12.1",
+    "fastify-static": "^0.14.0",
+    "marko": "^4.13.8",
+    "os-locale": "^3.0.1",
+    "point-of-view": "^2.0.0",
+    "pretty-bytes": "^5.1.0",
+    "pretty-ms": "^4.0.0",
+    "public-ip": "^2.4.0",
+    "systeminformation": "^3.45.7"
+  }
+}

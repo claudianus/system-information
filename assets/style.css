@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+  padding: 0px;
+}
+
+#app {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+nav {
+  background-color: #c8c8c8;
+}
+
+body {
+  background-color: #272b30;
+  color: #c8c8c8;
+}
+
+.card {
+  background-color: #2e3338;
+  border: none;
+}
+
+.card-header {
+  background-color: #3e444c!important;
+  border-color: #3e444c!important;
+}
+
+.card-body {
+  color: #c8c8c8;
+  font-size: 13px;
+}
+
+tbody tr:first-child > td   {
+  border-top: none;
+}
+
+thead tr:first-child > th   {
+  border-top: none;
+}
+
+tbody tr td:first-child {
+  font-weight: bold;
+}
+
+.table, .table .table {
+  background-color: inherit;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 1;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}
+
+.progress {
+  background-color: #1c1e22;
+}
+
+hr {
+  background-color: whitesmoke;
+}
