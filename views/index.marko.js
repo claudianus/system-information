@@ -23,7 +23,7 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<div class=\"container\" id=\"app\"><nav class=\"navbar navbar-dark bg-dark rounded shadow-sm mb-3\"><a class=\"navbar-brand\" href=\"/\"><img src=\"/assets/logo.svg\" width=\"30\" height=\"30\" alt=\"logo\" class=\"mr-1\"> System Information</a></nav><div class=\"row justify-content-center mb-3\"><div class=\"col-12 col-lg-6 mb-3\"> <div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System Vital</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Canonical Hostname</td><td>" +
+  out.w("<div class=\"container\" id=\"app\"><nav class=\"navbar navbar-dark bg-dark rounded shadow-sm mb-3\"><a class=\"navbar-brand\" href=\"/\"><img src=\"/assets/logo.svg\" width=\"30\" height=\"30\" alt=\"logo\" class=\"mr-1\"> System Information</a></nav><div class=\"row justify-content-center mb-3\"><div class=\"col-12 col-lg-6 mb-3\"> <div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System Vital</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Canonical Hostname</td><td>" +
     marko_escapeXml(input.staticData.os.hostname) +
     "</td></tr><tr><td>Listening IP</td><td>" +
     marko_escapeXml(input.listeningIp) +
@@ -33,19 +33,19 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.os.distro) +
     "</td></tr><tr><td>Uptime</td><td>" +
     marko_escapeXml(input.time.prettyUptime) +
-    "</td></tr><tr><td>Average load</td><td><div class=\"row\"><div class=\"col-5\">" +
+    "</td></tr><tr><td>Average load</td><td><div class=\"float-left\">" +
     marko_escapeXml(input.avgload[0].toFixed(2)) +
     " " +
     marko_escapeXml(input.avgload[1].toFixed(2)) +
     " " +
     marko_escapeXml(input.avgload[2].toFixed(2)) +
-    "</div><div class=\"col-7\"><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated\" role=\"progressbar\" style=\"width: " +
+    "</div><div class=\"float-right\" style=\"width:50%;\"><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated\" role=\"progressbar\" style=\"width: " +
     marko_escapeXmlAttr(input.currentLoad.avgload) +
     "%;\" aria-valuenow=\"" +
     marko_escapeXmlAttr(input.currentLoad.avgload) +
     "\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div></div><div class=\"text-center\">" +
     marko_escapeXml(input.currentLoad.avgload) +
-    "%</div></div> </div></td></tr><tr><td>System Language</td><td>" +
+    "%</div></div> </td></tr><tr><td>System Language</td><td>" +
     marko_escapeXml(input.locale) +
     "</td></tr><tr><td>Local time</td><td>" +
     marko_escapeXml(input.time.prettyCurrent) +
@@ -63,12 +63,12 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.processes.blocked) +
     " blocked, " +
     marko_escapeXml(input.processes.unknown) +
-    " unknown)</td></tr></tbody></table></div></div></div><div class=\"col-12 col-lg-6 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">CPU Usage</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><thead><th scope=\"col\">Core</th><th scope=\"col\" style=\"width:60%;\">Load</th><th scope=\"col\">Speed</th><th scope=\"col\">Temp</th></thead><tbody>");
+    " unknown)</td></tr></tbody></table></div></div></div></div><div class=\"col-12 col-lg-6 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">CPU Usage</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><thead><th scope=\"col\">Core</th><th scope=\"col\" style=\"width:60%;\">Load</th><th scope=\"col\">Speed</th><th scope=\"col\">Temp</th></thead><tbody>");
 
-  var for__70 = 0;
+  var for__71 = 0;
 
   marko_forEachWithStatusVar(input.currentLoad.cpus, function(core, loop) {
-    var keyscope__71 = "[" + ((for__70++) + "]");
+    var keyscope__72 = "[" + ((for__71++) + "]");
 
     out.w("<tr><td>Core " +
       marko_escapeXml(loop.getIndex()) +
@@ -83,7 +83,7 @@ function render(input, out, __component, component, state) {
       "</td></tr>");
   });
 
-  out.w("</tbody></table></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Memory Usage</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Type</th><th scope=\"col\" style=\"width:50%;\">Usage</th><th scope=\"col\">Free</th><th scope=\"col\">Used</th><th scope=\"col\">Total</th></tr></thead><tbody><tr><td>Physical</td><td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated\" role=\"progressbar\" style=\"width: " +
+  out.w("</tbody></table></div></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Memory Usage</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Type</th><th scope=\"col\" style=\"width:50%;\">Usage</th><th scope=\"col\">Free</th><th scope=\"col\">Used</th><th scope=\"col\">Total</th></tr></thead><tbody><tr><td>Physical</td><td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped progress-bar-animated\" role=\"progressbar\" style=\"width: " +
     marko_escapeXmlAttr((input.memoryUsage.active / input.memoryUsage.total) * 100) +
     "%;\"></div><div class=\"progress-bar bg-warning progress-bar-striped progress-bar-animated\" role=\"progressbar\" style=\"width: " +
     marko_escapeXmlAttr((input.memoryUsage.buffcache / input.memoryUsage.total) * 100) +
@@ -109,12 +109,12 @@ function render(input, out, __component, component, state) {
     marko_escapeXml((((input.memoryUsage.swapused / 1024) / 1024) / 1024).toFixed(2)) +
     " GB</td><td>" +
     marko_escapeXml((((input.memoryUsage.swaptotal / 1024) / 1024) / 1024).toFixed(2)) +
-    " GB</td></tr></tbody></table></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Storage Usage</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Mount</th><th scope=\"col\">Type</th><th scope=\"col\">Fs</th><th scope=\"col\" style=\"width:50%\">Usage</th><th scope=\"col\">Free</th><th scope=\"col\">Used</th><th scope=\"col\">Total</th></tr></thead><tbody>");
+    " GB</td></tr></tbody></table></div></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Storage Usage</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Mount</th><th scope=\"col\">Type</th><th scope=\"col\">Fs</th><th scope=\"col\" style=\"width:50%\">Usage</th><th scope=\"col\">Free</th><th scope=\"col\">Used</th><th scope=\"col\">Total</th></tr></thead><tbody>");
 
-  var for__127 = 0;
+  var for__130 = 0;
 
   marko_forEach(input.fsSize, function(storage) {
-    var keyscope__128 = "[" + ((for__127++) + "]");
+    var keyscope__131 = "[" + ((for__130++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(storage.mount) +
@@ -135,12 +135,12 @@ function render(input, out, __component, component, state) {
       "</td></tr>");
   });
 
-  out.w("</tbody></table></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Network Usage</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Interface</th><th scope=\"col\">Ipv4</th><th scope=\"col\">Ipv6</th><th scope=\"col\">Mac</th><th scope=\"col\">Operstate</th><th scope=\"col\">Receive</th><th scope=\"col\">Sent</th><th scope=\"col\">Ms</th></tr></thead><tbody>");
+  out.w("</tbody></table></div></div></div></div><div class=\"col-12 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Network Usage</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><thead><tr><th scope=\"col\">Interface</th><th scope=\"col\">Ipv4</th><th scope=\"col\">Ipv6</th><th scope=\"col\">Mac</th><th scope=\"col\">Operstate</th><th scope=\"col\">Receive</th><th scope=\"col\">Sent</th><th scope=\"col\">Ms</th></tr></thead><tbody>");
 
-  var for__156 = 0;
+  var for__160 = 0;
 
   marko_forEach(input.networkInterfaces, function(network) {
-    var keyscope__157 = "[" + ((for__156++) + "]");
+    var keyscope__161 = "[" + ((for__160++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(network.iface) +
@@ -165,7 +165,7 @@ function render(input, out, __component, component, state) {
       "</td></tr>");
   });
 
-  out.w("</tbody></table></div></div></div></div><hr><div class=\"row justify-content-center\"><div class=\"col-12\"><div class=\"card-columns\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Operating system</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Platform</td><td>" +
+  out.w("</tbody></table></div></div></div></div></div><hr><div class=\"row justify-content-center\"><div class=\"col-12\"><div class=\"card-columns\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Operating system</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Platform</td><td>" +
     marko_escapeXml(input.staticData.os.platform) +
     "</td></tr><tr><td>Distro</td><td>" +
     marko_escapeXml(input.staticData.os.distro) +
@@ -181,7 +181,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.os.hostname) +
     "</td></tr><tr><td>Logofile</td><td>" +
     marko_escapeXml(input.staticData.os.logofile) +
-    "</td></tr></tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
+    "</td></tr></tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
     marko_escapeXml(input.staticData.system.manufacturer) +
     "</td></tr><tr><td>Model</td><td>" +
     marko_escapeXml(input.staticData.system.model) +
@@ -193,7 +193,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.system.uuid) +
     "</td></tr><tr><td>SKU</td><td>" +
     marko_escapeXml(input.staticData.system.sku) +
-    "</td></tr></tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Baseboard</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
+    "</td></tr></tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Baseboard</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
     marko_escapeXml(input.staticData.baseboard.manufacturer) +
     "</td></tr><tr><td>Model</td><td>" +
     marko_escapeXml(input.staticData.baseboard.model) +
@@ -203,7 +203,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.baseboard.serial) +
     "</td></tr><tr><td>AssetTag</td><td>" +
     marko_escapeXml(input.staticData.baseboard.assetTag) +
-    "</td></tr></tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Bios</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Vendor</td><td>" +
+    "</td></tr></tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Bios</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Vendor</td><td>" +
     marko_escapeXml(input.staticData.bios.vendor) +
     "</td></tr><tr><td>Version</td><td>" +
     marko_escapeXml(input.staticData.bios.version) +
@@ -211,7 +211,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.bios.releaseDate) +
     "</td></tr><tr><td>Revision</td><td>" +
     marko_escapeXml(input.staticData.bios.revision) +
-    "</td></tr></tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">CPU</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
+    "</td></tr></tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">CPU</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Manufacturer</td><td>" +
     marko_escapeXml(input.staticData.cpu.manufacturer) +
     "</td></tr><tr><td>Brand</td><td>" +
     marko_escapeXml(input.staticData.cpu.brand) +
@@ -245,12 +245,12 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(((input.staticData.cpu.cache.l3 / 1024) / 1024).toFixed(2)) +
     " MB</td></tr></tbody></table></td></tr><tr><td>flags</td><td>" +
     marko_escapeXml(input.staticData.cpu.flags) +
-    "</td></tr></tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">GPU</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody>");
+    "</td></tr></tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">GPU</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody>");
 
-  var for__330 = 0;
+  var for__340 = 0;
 
   marko_forEachWithStatusVar(input.staticData.graphics.controllers, function(gpu, loop) {
-    var keyscope__331 = "[" + ((for__330++) + "]");
+    var keyscope__341 = "[" + ((for__340++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(loop.getIndex() + 1) +
@@ -267,12 +267,12 @@ function render(input, out, __component, component, state) {
       "</td></tr></tbody></table></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Display</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody>");
+  out.w("</tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Display</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody>");
 
-  var for__357 = 0;
+  var for__368 = 0;
 
   marko_forEachWithStatusVar(input.staticData.graphics.displays, function(display, loop) {
-    var keyscope__358 = "[" + ((for__357++) + "]");
+    var keyscope__369 = "[" + ((for__368++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(loop.getIndex() + 1) +
@@ -297,12 +297,12 @@ function render(input, out, __component, component, state) {
       "</td></tr></tbody></table></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">memLayout</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody>");
+  out.w("</tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">memLayout</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody>");
 
-  var for__396 = 0;
+  var for__408 = 0;
 
   marko_forEachWithStatusVar(input.staticData.memLayout, function(mem, loop) {
-    var keyscope__397 = "[" + ((for__396++) + "]");
+    var keyscope__409 = "[" + ((for__408++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(loop.getIndex() + 1) +
@@ -331,12 +331,12 @@ function render(input, out, __component, component, state) {
       "</td></tr></tbody></table></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">diskLayout</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody>");
+  out.w("</tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">diskLayout</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody>");
 
-  var for__441 = 0;
+  var for__454 = 0;
 
   marko_forEachWithStatusVar(input.staticData.diskLayout, function(disk, loop) {
-    var keyscope__442 = "[" + ((for__441++) + "]");
+    var keyscope__455 = "[" + ((for__454++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(loop.getIndex() + 1) +
@@ -373,7 +373,7 @@ function render(input, out, __component, component, state) {
       "</td></tr></tbody></table></td></tr>");
   });
 
-  out.w("</tbody></table></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Versions</h6><div class=\"card-body\"><table class=\"table table-hover table-sm\"><tbody><tr><td>kernel</td><td>" +
+  out.w("</tbody></table></div></div></div><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">Versions</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>kernel</td><td>" +
     marko_escapeXml(input.staticData.versions.kernel) +
     "</td></tr><tr><td>openssl</td><td>" +
     marko_escapeXml(input.staticData.versions.openssl) +
@@ -405,11 +405,11 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(input.staticData.versions.nginx) +
     "</td></tr><tr><td>php</td><td>" +
     marko_escapeXml(input.staticData.versions.php) +
-    "</td></tr></tbody></table></div></div></div></div></div></div><script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script><script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>");
+    "</td></tr></tbody></table></div></div></div></div></div></div></div><script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script><script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "549");
+  await_reorderer_tag({}, out, __component, "563");
 
   out.w("</body></html>");
 }
