@@ -1,25 +1,28 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>System Information</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="/./assets/style.css">  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/style.css">
 </head>
+
 <body>
   <div class="container" id="app">
     <nav class="navbar navbar-dark bg-dark rounded shadow-sm mb-3">
-      <a class="navbar-brand" href="./">
-        <img src="/./assets/logo.svg" width="30" height="30" alt="logo" class="mr-1">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/logo.svg" width="30" height="30" alt="logo" class="mr-1">
         System Information
       </a>
     </nav>
 
     <div class="row justify-content-center mb-3">
 
-      <div class="col-12 col-lg-6 mb-3">        
+      <div class="col-12 col-lg-6 mb-3">
         <div class="card text-white shadow-sm">
           <h6 class="card-header">System Vital</h6>
           <div class="card-body">
@@ -54,10 +57,11 @@
                       </div>
                       <div class="float-right" style="width:50%;">
                         <div class="progress">
-                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${input.currentLoad.avgload}%;" aria-valuenow="${input.currentLoad.avgload}" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${input.currentLoad.avgload}%;"
+                            aria-valuenow="${input.currentLoad.avgload}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="text-center">${input.currentLoad.avgload}%</div>
-                      </div>                                   
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -78,7 +82,8 @@
                   </tr>
                   <tr>
                     <td>Processes</td>
-                    <td>${input.processes.all} (${input.processes.running} running, ${input.processes.sleeping} sleeping, ${input.processes.blocked} blocked, ${input.processes.unknown} unknown)</td>
+                    <td>${input.processes.all} (${input.processes.running} running, ${input.processes.sleeping}
+                      sleeping, ${input.processes.blocked} blocked, ${input.processes.unknown} unknown)</td>
                   </tr>
                 </tbody>
               </table>
@@ -101,18 +106,18 @@
                 </thead>
                 <tbody>
                   <for(core in input.currentLoad.cpus | status-var=loop)>
-                  <tr>
-                    <td>Core ${loop.getIndex()}</td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${core.load}%;"></div>
-                      </div>
-                      <div class="text-center">${core.load.toFixed(2)}%</div>
-                    </td>
-                    <td>${input.cpuCurrentspeed.cores[loop.getIndex()]} Ghz</td>
-                    <td>${input.cpuTemp.cores[loop.getIndex()]}</td>
-                  </tr>
-                  </for>
+                    <tr>
+                      <td>Core ${loop.getIndex()}</td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${core.load}%;"></div>
+                        </div>
+                        <div class="text-center">${core.load.toFixed(2)}%</div>
+                      </td>
+                      <td>${input.cpuCurrentspeed.cores[loop.getIndex()]} Ghz</td>
+                      <td>${input.cpuTemp.cores[loop.getIndex()]}</td>
+                    </tr>
+                    </for>
                 </tbody>
               </table>
             </div>
@@ -141,15 +146,18 @@
                     <td>
                       <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${input.memoryUsage.active/input.memoryUsage.total*100}%;"></div>
-                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${input.memoryUsage.buffcache/input.memoryUsage.total*100}%;"></div>
+                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
+                          style="width: ${input.memoryUsage.buffcache/input.memoryUsage.total*100}%;"></div>
                       </div>
-                      <div class="text-center">${(input.memoryUsage.used/input.memoryUsage.total*100).toFixed(2)}% (active: ${(input.memoryUsage.active/input.memoryUsage.total*100).toFixed(2)}%, buffcache: ${(input.memoryUsage.buffcache/input.memoryUsage.total*100).toFixed(2)}%)</div>
+                      <div class="text-center">${(input.memoryUsage.used/input.memoryUsage.total*100).toFixed(2)}%
+                        (active: ${(input.memoryUsage.active/input.memoryUsage.total*100).toFixed(2)}%, buffcache:
+                        ${(input.memoryUsage.buffcache/input.memoryUsage.total*100).toFixed(2)}%)</div>
                     </td>
                     <td>${(input.memoryUsage.free/1024/1024/1024).toFixed(2)} GB</td>
                     <td>${(input.memoryUsage.used/1024/1024/1024).toFixed(2)} GB</td>
                     <td>${(input.memoryUsage.total/1024/1024/1024).toFixed(2)} GB</td>
                   </tr>
-                    <tr>
+                  <tr>
                     <td>SWAP</td>
                     <td>
                       <div class="progress">
@@ -187,21 +195,21 @@
                 </thead>
                 <tbody>
                   <for(storage in input.fsSize)>
-                  <tr>
-                    <td>${storage.mount}</td>                  
-                    <td>${storage.type}</td>
-                    <td>${storage.fs}</td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${storage.used/storage.size*100}%;"></div>
-                      </div>
-                      <div class="text-center">${(storage.used/storage.size*100).toFixed(2)}%</div>
-                    </td>
-                    <td>${storage.prettyFree}</td>
-                    <td>${storage.prettyUsed}</td>
-                    <td>${storage.prettySize}</td>
-                  </tr>
-                  </for>
+                    <tr>
+                      <td>${storage.mount}</td>
+                      <td>${storage.type}</td>
+                      <td>${storage.fs}</td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${storage.used/storage.size*100}%;"></div>
+                        </div>
+                        <div class="text-center">${(storage.used/storage.size*100).toFixed(2)}%</div>
+                      </td>
+                      <td>${storage.prettyFree}</td>
+                      <td>${storage.prettyUsed}</td>
+                      <td>${storage.prettySize}</td>
+                    </tr>
+                    </for>
                 </tbody>
               </table>
             </div>
@@ -229,30 +237,30 @@
                 </thead>
                 <tbody>
                   <for(network in input.networkInterfaces)>
-                  <tr>
-                    <td>${network.iface}</td>                  
-                    <td>${network.ip4}</td>
-                    <td>${network.ip6}</td>
-                    <td>${network.mac}</td>
-                    <td>${network.stats.operstate}</td>
-                    <td>
-                      <div>${network.stats.prettyRx}</div>
-                      <div>(${network.stats.prettyRxSec}/s)</div>
-                    </td>
-                    <td>
-                      <div>${network.stats.prettyTx}</div>
-                      <div>(${network.stats.prettyTxSec}/s)</div>
-                    </td>
-                    <td>${network.stats.prettyMs}</td>
-                  </tr>
-                  </for>
+                    <tr>
+                      <td>${network.iface}</td>
+                      <td>${network.ip4}</td>
+                      <td>${network.ip6}</td>
+                      <td>${network.mac}</td>
+                      <td>${network.stats.operstate}</td>
+                      <td>
+                        <div>${network.stats.prettyRx}</div>
+                        <div>(${network.stats.prettyRxSec}/s)</div>
+                      </td>
+                      <td>
+                        <div>${network.stats.prettyTx}</div>
+                        <div>(${network.stats.prettyTxSec}/s)</div>
+                      </td>
+                      <td>${network.stats.prettyMs}</td>
+                    </tr>
+                    </for>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-      
+
     </div>
 
     <hr>
@@ -490,7 +498,7 @@
             </div>
           </div>
 
-          
+
           <div class="card text-white shadow-sm">
             <h6 class="card-header">GPU</h6>
             <div class="card-body">
@@ -498,38 +506,38 @@
                 <table class="table table-hover table-sm">
                   <tbody>
                     <for(gpu in input.staticData.graphics.controllers | status-var=loop)>
-                    <tr>
-                      <td>
-                        ${loop.getIndex()+1}
-                      </td>
-                      <td>
-                        <table class="table table-hover table-sm">
-                          <tbody>
-                            <tr>
-                              <td>Model</td>
-                              <td>${gpu.model}</td>
-                            </tr>
-                            <tr>
-                              <td>Vendor</td>
-                              <td>${gpu.vendor}</td>
-                            </tr>
-                            <tr>
-                              <td>Bus</td>
-                              <td>${gpu.bus}</td>
-                            </tr>
-                            <tr>
-                              <td>Vram</td>
-                              <td>${gpu.vram} MB</td>
-                            </tr>
-                            <tr>
-                              <td>VramDynamic</td>
-                              <td>${gpu.vramDynamic}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                    </for>
+                      <tr>
+                        <td>
+                          ${loop.getIndex()+1}
+                        </td>
+                        <td>
+                          <table class="table table-hover table-sm">
+                            <tbody>
+                              <tr>
+                                <td>Model</td>
+                                <td>${gpu.model}</td>
+                              </tr>
+                              <tr>
+                                <td>Vendor</td>
+                                <td>${gpu.vendor}</td>
+                              </tr>
+                              <tr>
+                                <td>Bus</td>
+                                <td>${gpu.bus}</td>
+                              </tr>
+                              <tr>
+                                <td>Vram</td>
+                                <td>${gpu.vram} MB</td>
+                              </tr>
+                              <tr>
+                                <td>VramDynamic</td>
+                                <td>${gpu.vramDynamic}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </for>
                   </tbody>
                 </table>
               </div>
@@ -543,54 +551,54 @@
                 <table class="table table-hover table-sm">
                   <tbody>
                     <for(display in input.staticData.graphics.displays | status-var=loop)>
-                    <tr>
-                      <td>
-                        ${loop.getIndex()+1}
-                      </td>
-                      <td>
-                        <table class="table table-hover table-sm">
-                          <tbody>
-                            <tr>
-                              <td>Model</td>
-                              <td>${display.model}</td>
-                            </tr>
-                            <tr>
-                              <td>main</td>
-                              <td>${display.main}</td>
-                            </tr>
-                            <tr>
-                              <td>builtin</td>
-                              <td>${display.builtin}</td>
-                            </tr>
-                            <tr>
-                              <td>connection</td>
-                              <td>${display.connection}</td>
-                            </tr>
-                            <tr>
-                              <td>resolutionx</td>
-                              <td>${display.resolutionx}</td>
-                            </tr>
-                            <tr>
-                              <td>resolutiony</td>
-                              <td>${display.resolutiony}</td>
-                            </tr>
-                            <tr>
-                              <td>sizex</td>
-                              <td>${display.sizex}</td>
-                            </tr>
-                            <tr>
-                              <td>sizey</td>
-                              <td>${display.sizey}</td>
-                            </tr>
-                            <tr>
-                              <td>pixeldepth</td>
-                              <td>${display.pixeldepth}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                    </for>
+                      <tr>
+                        <td>
+                          ${loop.getIndex()+1}
+                        </td>
+                        <td>
+                          <table class="table table-hover table-sm">
+                            <tbody>
+                              <tr>
+                                <td>Model</td>
+                                <td>${display.model}</td>
+                              </tr>
+                              <tr>
+                                <td>main</td>
+                                <td>${display.main}</td>
+                              </tr>
+                              <tr>
+                                <td>builtin</td>
+                                <td>${display.builtin}</td>
+                              </tr>
+                              <tr>
+                                <td>connection</td>
+                                <td>${display.connection}</td>
+                              </tr>
+                              <tr>
+                                <td>resolutionx</td>
+                                <td>${display.resolutionx}</td>
+                              </tr>
+                              <tr>
+                                <td>resolutiony</td>
+                                <td>${display.resolutiony}</td>
+                              </tr>
+                              <tr>
+                                <td>sizex</td>
+                                <td>${display.sizex}</td>
+                              </tr>
+                              <tr>
+                                <td>sizey</td>
+                                <td>${display.sizey}</td>
+                              </tr>
+                              <tr>
+                                <td>pixeldepth</td>
+                                <td>${display.pixeldepth}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </for>
                   </tbody>
                 </table>
               </div>
@@ -604,62 +612,62 @@
                 <table class="table table-hover table-sm">
                   <tbody>
                     <for(mem in input.staticData.memLayout | status-var=loop)>
-                    <tr>
-                      <td>
-                        ${loop.getIndex()+1}
-                      </td>
-                      <td>
-                        <table class="table table-hover table-sm">
-                          <tbody>
-                            <tr>
-                              <td>size</td>
-                              <td>${(mem.size/1024/1024/1024).toFixed(2)} GB</td>
-                            </tr>
-                            <tr>
-                              <td>bank</td>
-                              <td>${mem.bank}</td>
-                            </tr>
-                            <tr>
-                              <td>type</td>
-                              <td>${mem.type}</td>
-                            </tr>
-                            <tr>
-                              <td>clockSpeed</td>
-                              <td>${mem.clockSpeed}</td>
-                            </tr>
-                            <tr>
-                              <td>formFactor</td>
-                              <td>${mem.formFactor}</td>
-                            </tr>
-                            <tr>
-                              <td>manufacturer</td>
-                              <td>${mem.manufacturer}</td>
-                            </tr>
-                            <tr>
-                              <td>partNum</td>
-                              <td>${mem.partNum}</td>
-                            </tr>
-                            <tr>
-                              <td>serialNum</td>
-                              <td>${mem.serialNum}</td>
-                            </tr>
-                            <tr>
-                              <td>voltageConfigured</td>
-                              <td>${mem.voltageConfigured}</td>
-                            </tr>
-                            <tr>
-                              <td>voltageMin</td>
-                              <td>${mem.voltageMin}</td>
-                            </tr>
-                            <tr>
-                              <td>voltageMax</td>
-                              <td>${mem.voltageMax}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                    </for>
+                      <tr>
+                        <td>
+                          ${loop.getIndex()+1}
+                        </td>
+                        <td>
+                          <table class="table table-hover table-sm">
+                            <tbody>
+                              <tr>
+                                <td>size</td>
+                                <td>${(mem.size/1024/1024/1024).toFixed(2)} GB</td>
+                              </tr>
+                              <tr>
+                                <td>bank</td>
+                                <td>${mem.bank}</td>
+                              </tr>
+                              <tr>
+                                <td>type</td>
+                                <td>${mem.type}</td>
+                              </tr>
+                              <tr>
+                                <td>clockSpeed</td>
+                                <td>${mem.clockSpeed}</td>
+                              </tr>
+                              <tr>
+                                <td>formFactor</td>
+                                <td>${mem.formFactor}</td>
+                              </tr>
+                              <tr>
+                                <td>manufacturer</td>
+                                <td>${mem.manufacturer}</td>
+                              </tr>
+                              <tr>
+                                <td>partNum</td>
+                                <td>${mem.partNum}</td>
+                              </tr>
+                              <tr>
+                                <td>serialNum</td>
+                                <td>${mem.serialNum}</td>
+                              </tr>
+                              <tr>
+                                <td>voltageConfigured</td>
+                                <td>${mem.voltageConfigured}</td>
+                              </tr>
+                              <tr>
+                                <td>voltageMin</td>
+                                <td>${mem.voltageMin}</td>
+                              </tr>
+                              <tr>
+                                <td>voltageMax</td>
+                                <td>${mem.voltageMax}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </for>
                   </tbody>
                 </table>
               </div>
@@ -673,78 +681,78 @@
                 <table class="table table-hover table-sm">
                   <tbody>
                     <for(disk in input.staticData.diskLayout | status-var=loop)>
-                    <tr>
-                      <td>
-                        ${loop.getIndex()+1}
-                      </td>
-                      <td>
-                        <table class="table table-hover table-sm">
-                          <tbody>
-                            <tr>
-                              <td>type</td>
-                              <td>${disk.type}</td>
-                            </tr>
-                            <tr>
-                              <td>name</td>
-                              <td>${disk.name}</td>
-                            </tr>
-                            <tr>
-                              <td>vendor</td>
-                              <td>${disk.vendor}</td>
-                            </tr>
-                            <tr>
-                              <td>size</td>
-                              <td>${(disk.size/1024/1024/1024).toFixed(2)} GB</td>
-                            </tr>
-                            <tr>
-                              <td>bytesPerSector</td>
-                              <td>${disk.bytesPerSector}</td>
-                            </tr>
-                            <tr>
-                              <td>totalCylinders</td>
-                              <td>${disk.totalCylinders}</td>
-                            </tr>
-                            <tr>
-                              <td>totalHeads</td>
-                              <td>${disk.totalHeads}</td>
-                            </tr>
-                            <tr>
-                              <td>totalSectors</td>
-                              <td>${disk.totalSectors}</td>
-                            </tr>
-                            <tr>
-                              <td>totalTracks</td>
-                              <td>${disk.totalTracks}</td>
-                            </tr>
-                            <tr>
-                              <td>tracksPerCylinder</td>
-                              <td>${disk.tracksPerCylinder}</td>
-                            </tr>
-                            <tr>
-                              <td>sectorsPerTrack</td>
-                              <td>${disk.sectorsPerTrack}</td>
-                            </tr>
-                            <tr>
-                              <td>firmwareRevision</td>
-                              <td>${disk.firmwareRevision}</td>
-                            </tr>
-                            <tr>
-                              <td>serialNum</td>
-                              <td>${disk.serialNum}</td>
-                            </tr>
-                            <tr>
-                              <td>interfaceType</td>
-                              <td>${disk.interfaceType}</td>
-                            </tr>
-                            <tr>
-                              <td>smartStatus</td>
-                              <td>${disk.smartStatus}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                    </for>
+                      <tr>
+                        <td>
+                          ${loop.getIndex()+1}
+                        </td>
+                        <td>
+                          <table class="table table-hover table-sm">
+                            <tbody>
+                              <tr>
+                                <td>type</td>
+                                <td>${disk.type}</td>
+                              </tr>
+                              <tr>
+                                <td>name</td>
+                                <td>${disk.name}</td>
+                              </tr>
+                              <tr>
+                                <td>vendor</td>
+                                <td>${disk.vendor}</td>
+                              </tr>
+                              <tr>
+                                <td>size</td>
+                                <td>${(disk.size/1024/1024/1024).toFixed(2)} GB</td>
+                              </tr>
+                              <tr>
+                                <td>bytesPerSector</td>
+                                <td>${disk.bytesPerSector}</td>
+                              </tr>
+                              <tr>
+                                <td>totalCylinders</td>
+                                <td>${disk.totalCylinders}</td>
+                              </tr>
+                              <tr>
+                                <td>totalHeads</td>
+                                <td>${disk.totalHeads}</td>
+                              </tr>
+                              <tr>
+                                <td>totalSectors</td>
+                                <td>${disk.totalSectors}</td>
+                              </tr>
+                              <tr>
+                                <td>totalTracks</td>
+                                <td>${disk.totalTracks}</td>
+                              </tr>
+                              <tr>
+                                <td>tracksPerCylinder</td>
+                                <td>${disk.tracksPerCylinder}</td>
+                              </tr>
+                              <tr>
+                                <td>sectorsPerTrack</td>
+                                <td>${disk.sectorsPerTrack}</td>
+                              </tr>
+                              <tr>
+                                <td>firmwareRevision</td>
+                                <td>${disk.firmwareRevision}</td>
+                              </tr>
+                              <tr>
+                                <td>serialNum</td>
+                                <td>${disk.serialNum}</td>
+                              </tr>
+                              <tr>
+                                <td>interfaceType</td>
+                                <td>${disk.interfaceType}</td>
+                              </tr>
+                              <tr>
+                                <td>smartStatus</td>
+                                <td>${disk.smartStatus}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </for>
                   </tbody>
                 </table>
               </div>
@@ -832,8 +840,12 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
