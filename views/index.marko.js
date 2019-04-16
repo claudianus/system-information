@@ -19,11 +19,11 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>System Information</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\"><link rel=\"stylesheet\" href=\"/assets/style.css\"> </head><body>");
+  out.w("<!doctype html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>System Information</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\"><link rel=\"stylesheet\" href=\"/assets/style.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<div class=\"container\" id=\"app\"><nav class=\"navbar navbar-dark bg-dark rounded shadow-sm mb-3\"><a class=\"navbar-brand\" href=\"/\"><img src=\"/assets/logo.svg\" width=\"30\" height=\"30\" alt=\"logo\" class=\"mr-1\"> System Information</a></nav><div class=\"row justify-content-center mb-3\"><div class=\"col-12 col-lg-6 mb-3\"> <div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System Vital</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Canonical Hostname</td><td>" +
+  out.w("<div class=\"container\" id=\"app\"><nav class=\"navbar navbar-dark bg-dark rounded shadow-sm mb-3\"><a class=\"navbar-brand\" href=\"/\"><img src=\"/assets/logo.svg\" width=\"30\" height=\"30\" alt=\"logo\" class=\"mr-1\"> System Information</a></nav><div class=\"row justify-content-center mb-3\"><div class=\"col-12 col-lg-6 mb-3\"><div class=\"card text-white shadow-sm\"><h6 class=\"card-header\">System Vital</h6><div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-hover table-sm\"><tbody><tr><td>Canonical Hostname</td><td>" +
     marko_escapeXml(input.staticData.os.hostname) +
     "</td></tr><tr><td>Listening IP</td><td>" +
     marko_escapeXml(input.listeningIp) +
@@ -45,7 +45,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXmlAttr(input.currentLoad.avgload) +
     "\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div></div><div class=\"text-center\">" +
     marko_escapeXml(input.currentLoad.avgload) +
-    "%</div></div> </td></tr><tr><td>System Language</td><td>" +
+    "%</div></div></td></tr><tr><td>System Language</td><td>" +
     marko_escapeXml(input.locale) +
     "</td></tr><tr><td>Local time</td><td>" +
     marko_escapeXml(input.time.prettyCurrent) +
@@ -118,7 +118,7 @@ function render(input, out, __component, component, state) {
 
     out.w("<tr><td>" +
       marko_escapeXml(storage.mount) +
-      "</td> <td>" +
+      "</td><td>" +
       marko_escapeXml(storage.type) +
       "</td><td>" +
       marko_escapeXml(storage.fs) +
@@ -144,7 +144,7 @@ function render(input, out, __component, component, state) {
 
     out.w("<tr><td>" +
       marko_escapeXml(network.iface) +
-      "</td> <td>" +
+      "</td><td>" +
       marko_escapeXml(network.ip4) +
       "</td><td>" +
       marko_escapeXml(network.ip6) +
